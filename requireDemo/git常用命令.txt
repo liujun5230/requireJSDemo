@@ -1,0 +1,63 @@
+
+
+git常用命令：
+
+git add readme.txt  或 git add *   添加一个或所有文件
+git status   查看当前库状态
+git commit -m "git tracks changes"    提交所有文件并注释
+git log --pretty=oneline  查看历次提交的版本
+git reset --hard HEAD^  回退到上一个版本
+git reset --hard 3628164  根据版本号，回退到某个版本
+git reflog    查看历史版本号
+git remote add origin git@github.com:liujun5230/webpackStudy.git   添加到远程库
+git push -u origin master   首次推送到远程库时，使用-u关联远程库别名
+git remote rm origin  删除一个远程库关联别名
+git push origin master  推送到远程库
+git clone git@github.com:michaelliao/learngit.git   把远程库克隆到本地
+git pull git@github.com:liujun5230/webpackStudy.git   从远程库上更新到本地，相当于svn的update
+
+git add .   提交被修改的和新建的文件，但不包括被删除的文件
+git add -u?--update  更新所有改变的文件，即提交所有变化的文件
+git add -A?--all?提交已被修改和已被删除文件，但是不包括新的文件
+
+npm 常用命令
+
+npm install XXX@1.2.3 -g  全局安装某插件的1.2.3版本
+npm view vue-cli   查看当前全局 vue-cli 的版本
+npm install vue-cli --save   添加到项目运行依赖
+npm install vue-cli --save-dev 添加到项目开发依赖
+npm run dev  运行项目
+
+
+
+webstrom快捷键
+
+0. Ctrl + Alt + L   规范代码格式
+1. ctrl + b: 跳到光标所在的变量的声明处，用来查看该变量最初是在哪里声明的
+2. ctrl + / : 单行注释 
+3. ctrl + shift + / : 块注释 
+4. ctrl + r: 替换 
+5. ctrl + d: 行复制 
+6. ctrl + x: 剪切(删除)行，不选中，直接剪切整个行，如果选中部分内容则剪切选中的内容 
+7. ctrl + F12: 可以显示当前文件的结构 
+8. ctrl + shift + n: 打开工程中的文件，目的是打开当前工程下任意目录的文件。 
+10. alt + left/right:标签切换 
+9. ctrl + []: 匹配 {}[] 
+11. ctrl + shift + i : 显示当前CSS选择器或者JS函数的详细信息 
+12. ctrl + shift + ]/[: 选中块代码 
+13. ctrl + j: 输出模板 
+
+
+但是git bush使用vi命令创建文件时进入到vim编辑器后，我不知道怎么退出，查了下发现一个方法：
+
+方法：一直按住esc ，再连续按大写的z两次就退出来了。
+
+【https://www.cnblogs.com/macliu/p/6062917.html】
+
+https://www.jianshu.com/p/42e11515c10f
+http://webpack.github.io/
+https://github.com/nuysoft/Mock/wiki/Getting-Started
+
+http://www.jb51.net/article/97204.htm
+
+https://www.liaoxuefeng.com/

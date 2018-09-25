@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>鑫都国际影城中秋博饼</title>
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="/lywdbbcj_kh_alk/Public/Css/layout.css?v=25">
+<script type="text/javascript" src="/lywdbbcj_kh_alk/Public/Js/jquery-1.7.2.min.js"></script>
+<script>
+var img_dir = "/lywdbbcj_kh_alk/Public/Images";
+var app_dir = "/lywdbbcj_kh_alk";
+var public ="/lywdbbcj_kh_alk/Public";
+</script>
+<!-- <script type="text/javascript" src="/lywdbbcj_kh_alk/Public/Js/rolls7.js"></script> -->
+<script type='text/javascript' src='/lywdbbcj_kh_alk/Public/Js/rolls7.js?v=22'></script>
+<script type="text/javascript">	
+function notice(){	
+	$(".notice").css("display","none");
+	$(".reg").css("display","none");
+	$(".alayer2").css("display","none");		
+}
+	
+function reg(){
+	$(".reg").css("display","block");
+	$(".alayer2").css("display","block");
+}
+	 
+	
+function doSave(){
+	//这边最好做ajax判断
+	var tel = $("#userphone").val();	
+    var name = $("#name").val();
+	var survey_result = "";	
+	var prize_zone = "";
+	var err_msg = "";
+	var reg_tel=new RegExp("^1[3,5,4,7,8]{1}[0-9]{9}$");
+	var reg_name = new RegExp("^[\\u4e00-\\u9fa5]{2,6}$"); 
+
+	if (name == '') {
+	 	alert("姓名不能为空!");
+		$("#name").focus();
+		return;
+    }else if(!reg_name.test(name)){
+		alert("姓名请输入2-6个中文");
+		$("#name").focus();
+		return;
+	}
+	
+	if (tel == '') {
+		alert("手机不能为空!");
+		$("#phone").focus();
+	 	return;
+    } else if(!reg_tel.test(tel)){
+		alert("请输入正确的手机号码!");
+		$("#phone").focus();
+		return;
+	}
+
+	$.ajax({
+		url : '/lywdbbcj_kh_alk/index.php/Index/doReg',
+		data : {
+			username : name,
+			userphone : tel
+		},
+		type : 'post',
+		dataType : "json",
+		async : false,
+		error : function(ret, error) {
+			alert(ret.responseText);
+		},
+		success : function(ret) {			
+			if(ret.status=='ok'){
+				var link = window.location.href;
+        		if (link.indexOf("?") != -1) {
+            		window.location.replace(window.location.href + "&t=" + Math.random());
+        		} else {
+            		window.location.replace(window.location.href + "?t=" + Math.random());
+        		}				
+			}else{
+				alert(ret.message);				
+				return;				
+			}
+		}
+	});
+}
+
+var setFlag = false;
+$(document).ready(function() {
+	$("#bom").click(function() {
+		$(".panel").slideToggle(1000);				
+		if(setFlag){					
+			setTimeout(aaaaa,1000);					
+			setFlag = false;
+		}else{
+			$(".bbbb").css("z-index","5");
+			setFlag = true;
+		}				
+	});
+			
+	$("#panel").click(function() {
+		$(".panel").slideToggle(1000);				
+		if(setFlag){					
+			setTimeout(aaaaa,1000);					
+			setFlag = false;
+		}else{
+			$(".bbbb").css("z-index","5");
+			setFlag = true;
+		}				
+	});
+});
+			
+
+function initBgSound() {
+    bgsound = document.getElementById('audio');
+    if (!$('.musicicon').hasClass('musicrotate')) {
+        bgsound.play();
+        $('.musicicon').addClass('musicrotate');
+    } else {
+        bgsound.pause();
+        $('.musicicon').removeClass('musicrotate');
+    }
+}
+
+			
+$(function() {
+
+	initBgSound();
+    $('.musicicon').click(function() {
+        initBgSound();
+    });
+	var audio = document.getElementById('audio');
+    document.addEventListener("WeixinJSBridgeReady", function () {
+        audio.play();
+    }, false);
+
+
+	$('#startButton').click(function() {
+		shake = document.getElementById('bobing');
+		shake.load();			
+		if(document.getElementById("game_finish").value){
+			alert(document.getElementById("game_finish").value);
+			return false;
+		}
+		var need_login = '0';
+		//判断玩得次数是否达到
+		//var left_times = document.getElementById("left_times").value;
+		var bbCount = parseInt($("#id_leftcount").html());	
+		if(need_login==0){
+			//进入主页面
+			bgsound.pause();				
+			$('.homePageClass').hide();
+			$('.bobingPageClass').show();
+			flag=1; //开启博饼标识
+		}else if(need_login==1){
+			reg();//注册框				
+		}			
+	});
+		
+	//$('.ruleDiv').on("click", function() {
+	//	$(this).hide();
+	//});		
+	$('#gameRule').click(function() {
+		window.location.href="/lywdbbcj_kh_alk/rule.html";
+		//$('.hdgz-layout').show();
+		//$('.notice').show();
+	});
+		
+	$('#rank').click(function() {
+		window.location.href="/lywdbbcj_kh_alk/index.php/Index/topN.html";
+	});
+});			
+function aaaaa(){
+	$(".bbbb").css("z-index","2000");				
+}
+</script>
+<style type="text/css">
+*{padding:0; margin:0}
+.alayer2{background:#dedaa3; opacity:0.5; width:100%; height:100%; position:fixed; display:none; z-index:993;left:0;top:0;}
+.reg{background:rgba(221, 55, 94, 0.84); width:90%; height:200px; position:fixed; z-index:994; left:4%; top:28%; line-height:22px; font-size:15px;  color:#CB7B03;display:none;border-radius:9px;}
+.reg a{ float:right; margin-top:-5px;}
+/*.reg{ height:200px; }*/
+.reg input{ width:94%; height:30px; line-height:30px; font-size:14px; margin-top:10px;padding-left: 3%}
+.submit, .txtbtn{ width:100%; height:40px; line-height:40px; border-radius:5px; background:#BA0F1A; color:#FFF; margin-top:20px; text-align:center; font-size:16px; font-weight:bolder;letter-spacing:5px}
+#reg #submitBtn {background:url(/lywdbbcj_kh_alk/Public/Uploads/5b76711fcc8de.png) no-repeat;background-size:100% 100%;margin:0 auto;width:135px;height:40px;}
+#reg b ,.back{cursor: pointer;position: absolute;display: block;background: rgba(0, 0, 0, 0.6);border-radius: 100%;width: 26px;height: 26px;text-indent: 50px;transform: none;top: 0px;right: 0px;z-index: 991;}
+#reg b:after,.back:after{position: absolute;content: '';display: block;width: 18px;height: 2px;background: #fff;-webkit-transform: rotate(-45deg);top: 12px;left: 4px;}
+#reg b:before ,.back:before{position: absolute;content: '';display: block;width: 18px;height: 2px;background: #fff;-webkit-transform: rotate(45deg);top: 12px;left: 4px;}
+
+.ruleDiv {position:absolute;left:0;top:0;width:100%;height:100%;background:url(/lywdbbcj_kh_alk/Public/Images/rules.jpg) no-repeat;z-index:9;background-size:100% 100%;display:none;}
+
+.flipd {width: 50%;}
+p {margin: 0;padding: 0;}
+img {margin: 0;border: 0;display: block;}
+.aaaa {z-index: 1000;position: fixed;left: 0px;bottom: 0px;width: 100%;_position: absolute;_top: expression(document.documentElement.clientHeight + document.documentElement.scrollTop - this.offsetHeight);}
+.bbbb {z-index: 2001;position: fixed;left: 49.5%;bottom: 0px;_position: absolute;_top: expression(document.documentElement.clientHeight + document.documentElement.scrollTop - this.offsetHeight);}
+div.panel, p.flip {margin: 0px;text-align: center;background: #ea5514;}
+div.panel {display: none;}
+#bom {width: 100%;}
+
+.homePageClass {position:absolute;left:0;top:0;width:100%;height:100%;background: rgba(0, 0, 0, .8)url(/lywdbbcj_kh_alk/Public/Uploads/5b9b67e9aa853.jpg) right top no-repeat;background-size: 100% 100%;z-index:2;}
+
+.bobingPageClass {background:url(/lywdbbcj_kh_alk/Public/Uploads/5b9b685558095.jpg) repeat;
+	background-size: 100% 100%;position:absolute;left:0;top:0;width:100%;height:100%;background-size: 100% 100%;	display:none;}
+
+#mcover {position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0, 0, 0, 0.7);display: none;z-index: 20000;}
+
+.musicicon {
+    background: url(/lywdbbcj_kh_alk/Public/Images/normalmusic.svg) no-repeat;background-size:100% 100%;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 10px;
+    left: 7px;
+    z-index:999
+}
+.musicrotate{-webkit-animation: xuanzhuan 1.2s infinite linear; z-index:999;animation: xuanzhuan 1.2s infinite linear;}
+@keyframes xuanzhuan {
+    0% { transform: rotate(0deg)}
+    100% { transform: rotate(360deg)}
+}
+@-webkit-keyframes xuanzhuan {
+    0% { -webkit-transform: rotate(0deg)}
+    100% { -webkit-transform: rotate(360deg)}
+}
+
+</style>
+</head>
+<body>
+<input type="hidden" id="is_share" value="1">
+<input type="hidden" id="uid" value="948">
+<input type="hidden" id="game_finish" value="">
+<input type="hidden" id="wx_share_title" value="龙岩万达影城中秋博饼">
+<input type="hidden" id="wx_share_desc" value="龙岩万达影城金秋送礼！点击博取免费观影券等大奖！">
+<input type="hidden" id="wx_share_pic" value="http://jy.gz2hpfk.com/lywdbbcj_kh_alk/Public/Uploads/5b9b67f621cd8.jpg">
+<input type="hidden" id="wx_share_url" value="http://jy.gz2hpfk.com/lywdbbcj_kh_alk/index.php/Index/index.html">
+<div id="mcover" onclick="$(this).hide()"><img src="/lywdbbcj_kh_alk/Public/Uploads/5b766ed31d4ae.png"></div>
+<div class="musicicon"></div>
+<audio id="audio" loop="-1" src="/lywdbbcj_kh_alk/Public/Css/bjyy1.mp3"></audio>
+<audio id="bobing" loop="-1" src="/lywdbbcj_kh_alk/Public/Images/bo.mp3"></audio>
+
+<div class="homePageClass">
+<!-- <img  id="startButton"  style="z-index:2;left:24%;width:52%;bottom:40%;position: absolute;" src="/lywdbbcj_kh_alk/Public/Images/startbtn.png"/> -->
+<img id="startButton" style="top: 60%;left: 30%;width:40%;font-size:20px;position: absolute;cursor:pointer;" src="/lywdbbcj_kh_alk/Public/Uploads/5b766e715087a.png"/>
+<img id="gameRule" style="top: 71%;left: 30%;width:40%;font-size:20px;position: absolute;cursor:pointer;" src="/lywdbbcj_kh_alk/Public/Uploads/5b9a9a2f13919.png"/>
+<img id="rank" style="top: 81%;left: 30%;width:40%;font-size:20px;position: absolute;cursor:pointer;" src="/lywdbbcj_kh_alk/Public/Uploads/5b766e81512d2.png"/>
+</div>
+
+<div class="notice" id="ruleDiv" style="height:auto;">
+	<!-- <div style="padding:10px;line-height:20px;">
+   		<span >规则说明</span>
+		<div style="font-size:15px;margin-top:29px;line-height:25px"></div>
+		<div class="submit"  onClick="doNotice()">关闭</div>
+	</div> -->
+</div> 
+
+<!-- rule -->
+<!-- reg -->
+<div class="reg" id="reg" style="display: none;">
+    <b onclick="notice();" style=""></b>
+<div style="padding:10px;">
+    <input type="text" id="name" placeholder="请输入您的姓名" maxlength="11" style="margin-top:6%"/>
+    <input type="tel" id="userphone" placeholder="请输入您的手机号码" maxlength="11"/>
+    <span style="color:white;font-size:12px;margin-left:2%">*为了让工作人员给您兑奖，请正确填写资料</span>
+    <div class="btn" id="submitBtn" onclick="doSave()" style="margin-top:4%;"></div>
+</div>
+</div>
+<div class="alayer2" style="display: none;"></div>
+<!-- reg end -->
+
+<!-- 博饼页 -->
+<div class="bobingPageClass" style="position: fixed;">
+<form name="form1" method="post" action="" id="form1" >
+	<div id="getScoreValue" ></div>
+  	<div style="margin:15% auto 60px  auto;">
+    	<div style=" height:60px; width:320px; margin:0 auto;">	
+      		<div class="note" style="width:100%; background:rgba(228, 228, 228, 0.87);padding:2px;font-size: 18px;"> 
+      			<span id="current_username"> 帅哥</span>，您还有 <span id="id_leftcount" style="font-weight: bold;">3</span> 次博饼机会！
+	 		</div>
+    	</div>
+	
+    	<div class="bowl">
+	 		<div class="note" id="txt" style="display:none;position: absolute;top: 33%;font-weight: normal;width: 100%;height: 28px;line-height: 28px;font-size: 15px;margin: 0px auto;background: rgba(0, 0, 0, 0.42);border-radius: 17px;color: white;z-index:999;text-align:center">
+	   			<span style="z-index:1000;font-size: 18px; color: #CA0A01; font-family: '微软雅黑'; text-align:center"></span>
+	    	</div>
+			<img src="/lywdbbcj_kh_alk/Public/Images/wan.png" alt="">
+			<div class="logo" style="top:30px;"> <img src="/lywdbbcj_kh_alk/Public/Uploads/5b9a9f3d26cea.png" width="100%" /> </div>
+			<em class="dice dice1"><img src="/lywdbbcj_kh_alk/Public/Images/dian1.png" alt=""></em>
+			<em class="dice dice2" style="top:45%;left:55%;"><img src="/lywdbbcj_kh_alk/Public/Images/dian2.png" alt=""></em>
+			<em class="dice dice3" style="top:54%;left:45%;"><img src="/lywdbbcj_kh_alk/Public/Images/dian3.png" alt=""></em>
+			<em class="dice dice4" style="top:41%;left:40%;"><img src="/lywdbbcj_kh_alk/Public/Images/dian4.png" alt=""></em>
+			<em class="dice dice5" style="top:58%;left:60%;"><img src="/lywdbbcj_kh_alk/Public/Images/dian5.png" alt=""></em>
+			<em class="dice dice6" style="top:62%;left:35%;"><img src="/lywdbbcj_kh_alk/Public/Images/dian6.png" alt=""></em>		
+		</div>
+		<div style="margin: 7% auto 0px auto;" align="center"> <span onclick="begin_func()" class="startRoll"><img src="/lywdbbcj_kh_alk/Public/Uploads/5b766ebaee3e2.png" width="200" height="35" /></span></div>
+		<div style="margin: 2% auto 0px auto;" align="center">
+		<span class="boyiba" style="font-weight: normal;" onclick="goback()"><img src="/lywdbbcj_kh_alk/Public/Uploads/5b766ec071cce.png" style="height: 100%"></span> 
+		<span class="boyiba" style="font-weight: normal;" onclick="addOne()"><img src="/lywdbbcj_kh_alk/Public/Uploads/5b766ec5d0a73.png" style="height: 100%"></span>	
+	</div>	
+  	</div> 
+</form>
+</div>
+<!-- 中奖页 -->
+<div id='hasprize' style="z-index: 3;position:absolute;display: none;height: 100%;width: 100%">
+	<img id='prizepage' src="" style="height: 100%;width: 100%"/>
+	<div style="margin: -25% auto 0px auto;" align="center">
+		<span class="boyiba" style="font-weight: normal;" onclick="goback()"><img src="/lywdbbcj_kh_alk/Public/Uploads/5b766ec071cce.png" style="height: 100%"></span> 
+		<span class="boyiba" style="font-weight: normal;" onclick="addOne()"><img src="/lywdbbcj_kh_alk/Public/Uploads/5b766ec5d0a73.png" style="height: 100%"></span>	
+	</div>
+</div>
+ 
+<!-- 未中奖页 -->
+<div id='noprize' style="z-index: 4;position: absolute;height: 100%;width: 100%;display: none">
+	<img id='noprizepage' src="/lywdbbcj_kh_alk/Public/Images/noprize.jpg" style="height: 100%;width: 100%" />
+	<div style="margin: -25% auto 0px auto;" align="center">
+		<span class="boyiba" style="font-weight: normal;" onclick="goback()"><img src="/lywdbbcj_kh_alk/Public/Uploads/5b766ec071cce.png" style="height: 100%"></span> 
+		<span class="boyiba" style="font-weight: normal;" onclick="addOne()"><img src="/lywdbbcj_kh_alk/Public/Uploads/5b766ec5d0a73.png" style="height: 100%"></span>	
+	</div>
+</div>
+
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js?"></script>
+<script language="javascript">
+function goback(){
+	var link = window.location.href;
+    if (link.indexOf("?") != -1) {
+        window.location.replace(window.location.href + "&t=" + Math.random());
+    } else {
+        window.location.replace(window.location.href + "?t=" + Math.random());
+    }
+}
+
+wx.config({
+	 debug: false,
+		appId: 'wx325a5dbecd319b6d',
+		timestamp: 1537154352,
+		nonceStr: 'b1LgzgnPAJdupVBi',
+		signature: '6d891e3ab2b26253694a3c7db46bad443884ccb0',
+
+      jsApiList: [
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+		'hideMenuItems'
+		]
+  });
+  wx.ready(function () {
+    // 在这里调用 API
+	wx.hideMenuItems({
+      menuList: [
+        'menuItem:copyUrl',
+        'menuItem:openWithQQBrowser',
+        'menuItem:share:email',
+        'menuItem:openWithSafari',
+		 "menuItem:share:qq"
+      ],
+      success: function (res) {
+      },
+      fail: function (res) {
+      }
+    });
+	shareFn();
+
+	
+  });
+  
+  wx.error(function (res) {
+	
+	alert(res.errMsg);
+});
+
+function setShareCount() {
+	$.ajax({
+		url : "/lywdbbcj_kh_alk/index.php/Index/setShareCount",
+		data : {},
+		dataType : "json",
+		type : "post",
+		success : function(data) {
+			if(data.status=='ok'){
+				alert(data.msg);
+				setTimeout(function(){
+					var link = window.location.href;
+        			if (link.indexOf("?") != -1) {
+            			window.location.replace(window.location.href + "&t=" + Math.random());
+        			} else {
+            			window.location.replace(window.location.href + "?t=" + Math.random());
+        			}
+				},10);
+			}
+			//alert(data.msg);
+		}
+		
+	});
+	
+}
+
+function shareFn() {
+	wx.onMenuShareAppMessage({
+    	title: document.getElementById("wx_share_title").value,
+      	desc: document.getElementById("wx_share_desc").value,
+      	link: document.getElementById("wx_share_url").value,
+      	imgUrl: document.getElementById("wx_share_pic").value,
+      	trigger: function (res) {
+			//alert(document.getElementById("wx_share_desc").value);
+			//$("#wx_share_desc").val(ret.wx_share_msg);
+       		// alert('用户点击发送给朋友');
+      	},
+      	success: function (res) {
+			setShareCount();	  
+      	},
+      	cancel: function (res) {
+       		// alert('已取消');
+      	},
+      	fail: function (res) {
+       		// alert(JSON.stringify(res));
+      	}
+    });
+	
+	wx.onMenuShareTimeline({
+     	title: document.getElementById("wx_share_desc").value,
+      	link: document.getElementById("wx_share_url").value,
+      	imgUrl: document.getElementById("wx_share_pic").value,
+	  
+      	trigger: function (res) {
+       		// alert('用户点击分享到朋友圈');
+      	},
+      	success: function (res) {
+		  	setShareCount();
+      	},
+      	cancel: function (res) {
+       		// alert('已取消');
+      	},
+      	fail: function (res) {
+        	//alert(JSON.stringify(res));
+      	}
+    });		
+}
+</script>
+</body>
+</html>

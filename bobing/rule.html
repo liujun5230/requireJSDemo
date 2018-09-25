@@ -1,0 +1,153 @@
+<!doctype html>
+<html><head>
+        <!-- Mobile Devices Support @begin -->
+        <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+            <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+            <meta content="no-cache" http-equiv="pragma">
+            <meta content="0" http-equiv="expires">
+            <meta content="telephone=no, address=no" name="format-detection">
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+         
+        <!-- Mobile Devices Support @end -->
+
+<title>龙岩万达影城中秋博饼</title>
+
+<link rel="stylesheet" type="text/css" href="/lywdbbcj_kh_alk/Public/Css/layout.css" />
+<script type="text/javascript" src="/lywdbbcj_kh_alk/Public/Js/jquery-1.5.1.min.js"></script>
+<style type="text/css">
+*{padding:0; margin:0; list-style:none}
+.box{ width:90%; margin:auto auto; border:1px solid #CCC; border-radius:5px; margin-top:52%}
+.title{ font-size:16px; font-weight:bolder; text-align:center; height:30px; line-height:30px; color:#C34333
+}
+table{ width:100%; color:#420405}
+table td,table th{ border-bottom:#CCC dotted 1px; line-height:25px; height:25px; text-align:center}
+.arrow-tip{float: right;
+top: 2%;
+position: fixed;
+right: 2%;
+width: 14%;
+font-size: 14px;
+color: #FFF;
+border: 1px solid rgba(255, 193, 7, 0.82);
+background-color: rgba(255, 193, 7, 0.82);
+padding: 3px 8px;
+border-radius: 10px;
+text-align: center;
+margin-top: -3px;}
+</style>
+
+
+
+<!-- <script type="text/javascript" src="/lywdbbcj_kh_alk/Public/Js/jquery-1.7.1.min.js"></script> -->
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+
+//(function() { 
+//	var ua = window.navigator.userAgent.toLowerCase(); 
+//if(!(ua.match(/MicroMessenger/i) == 'micromessenger')){ 
+//	 window.location.href="/lywdbbcj_kh_alk/index.php/Index/wap_err.html";
+//	}
+//})(); 
+
+
+var curWwwPath = window.document.location.href;
+function goindex() {
+	window.location.href = curWwwPath.substring(0, curWwwPath.substr(1).indexOf('/index.php') + 1) + "/index.php/Index/index.html"
+}
+
+ wx.config({
+    debug: false,
+    appId: 'wx5f40b2cbd491fdbe',
+    timestamp: '1537168367',
+    nonceStr: 'XdoqFodTq2zJXfKR',
+    signature: '756da8d894807be5846bdbfeb931e1cec0bf20c6',
+      jsApiList: [
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+		'hideMenuItems'
+		]
+  });
+  wx.ready(function () {
+    // 在这里调用 API
+	
+	wx.hideMenuItems({
+      menuList: [
+        'menuItem:copyUrl',
+        'menuItem:openWithQQBrowser',
+        'menuItem:share:email',
+        'menuItem:openWithSafari',
+		 "menuItem:share:qq"
+      ],
+      success: function (res) {
+      },
+      fail: function (res) {
+      }
+    });
+	
+	wx.onMenuShareAppMessage({
+      title: '龙岩万达影城中秋博饼',
+      desc: '龙岩万达影城金秋送礼！点击博取免费观影券等大奖！',
+      link: 'http://jy.gz2hpfk.com/lywdbbcj_kh_alk/index.php/Index/index.html',
+      imgUrl: 'http://jy.gz2hpfk.com/lywdbbcj_kh_alk/Public/Uploads/5b9b67f621cd8.jpg',
+      trigger: function (res) {
+       // alert('用户点击发送给朋友');
+      },
+      success: function (res) {
+       // alert('已分享');
+      },
+      cancel: function (res) {
+       // alert('已取消');
+      },
+      fail: function (res) {
+       // alert(JSON.stringify(res));
+      }
+    });
+	
+	wx.onMenuShareTimeline({
+      title: '龙岩万达影城金秋送礼！点击博取免费观影券等大奖！',
+      link: 'http://jy.gz2hpfk.com/lywdbbcj_kh_alk/index.php/Index/index.html',
+      imgUrl: 'http://jy.gz2hpfk.com/lywdbbcj_kh_alk/Public/Uploads/5b9b67f621cd8.jpg',
+	  
+      trigger: function (res) {
+       // alert('用户点击分享到朋友圈');
+      },
+      success: function (res) {
+       // alert('已分享');
+      },
+      cancel: function (res) {
+       // alert('已取消');
+      },
+      fail: function (res) {
+        //alert(JSON.stringify(res));
+      }
+    });
+	
+  });
+  
+  wx.error(function (res) {
+	
+	alert(res.errMsg);
+});
+
+</script>
+</head>
+<body >
+  <div class="arrow-tip" onclick="goindex()">返回</div>
+<div>
+<img src="/lywdbbcj_kh_alk/Public/Uploads/5b9cc6636cda1.jpg" style="width:100%"/>
+</div>
+
+<!-- <div class="footer">
+    <div class="footer-bg"></div>
+    <ul class="clear">
+        <li><span><a href="/lywdbbcj_kh_alk/index.php/Index/index.html">首页</a></span></li>
+        <li><span><a href="/lywdbbcj_kh_alk/index.php/Index/mybobing.html">我的博饼</a></span></li>
+        <li><span><a href="/lywdbbcj_kh_alk/index.php/Index/rule.html">博饼规则</a></span></li>
+       <li><span><a href="/lywdbbcj_kh_alk/index.php/Index/topN.html">积分榜</a></span></li>
+    </ul>
+</div> -->
+<!-- <span style="position: absolute;bottom: 3%;left: 23%;font-size: 12px;color: white;text-align: center;">技术支持：威虎科技(QQ:1599675606)</span> -->
+</body></html>

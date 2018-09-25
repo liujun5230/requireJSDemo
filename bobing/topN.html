@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1.0,user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<title>龙岩万达影城中秋博饼</title>
+<link rel="stylesheet" type="text/css" href="/lywdbbcj_kh_alk/Public/Css/main.min.css?v=2"> 
+<script type="text/javascript" src="/lywdbbcj_kh_alk/Public/Js/jquery-1.5.1.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+var curWwwPath = window.document.location.href;
+function goindex() {
+	window.location.href = curWwwPath.substring(0, curWwwPath.substr(1).indexOf('/index.php') + 1) + "/index.php/Index/index.html"
+}
+
+function chang(id){
+  $('#lottId').val(id);
+  $('.reg').show();
+  $('.alayer2').show();
+}
+
+function notice(){
+  $('.reg').hide();
+  $('.alayer2').hide();
+}
+
+function doChange(){
+  var lottId=$('#lottId').val();
+  var duijiangma=$('#duijiangma').val();
+  $.ajax({
+    url : '/lywdbbcj_kh_alk/index.php/Index/doChange',
+    data : {
+      lottId : lottId,
+      duijiangma : duijiangma
+    },
+    type : 'post',
+    dataType : "json",
+    async : false,
+    error : function(ret, error) {
+      alert(ret.responseText);
+    },
+    success : function(ret) {     
+      if(ret.status=='ok'){
+        var link = window.location.href;
+            if (link.indexOf("?") != -1) {
+                window.location.replace(window.location.href + "&t=" + Math.random());
+            } else {
+                window.location.replace(window.location.href + "?t=" + Math.random());
+            }       
+      }else{
+        alert(ret.message);       
+        return;       
+      }
+    }
+  });
+}
+
+wx.config({
+    debug: false,
+    appId: 'wx5f40b2cbd491fdbe',
+    timestamp: '1537168520',
+    nonceStr: 'H3kQi1hVthfJb47B',
+    signature: '657bcc18bdd580c59901c0f5e245265dab1194c4',
+      jsApiList: [
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+		'hideMenuItems'
+		]
+  });
+  wx.ready(function () {
+    // 在这里调用 API
+	wx.hideMenuItems({
+      menuList: [
+        'menuItem:copyUrl',
+        'menuItem:openWithQQBrowser',
+        'menuItem:share:email',
+        'menuItem:openWithSafari',
+		 "menuItem:share:qq"
+      ],
+      success: function (res) {
+      },
+      fail: function (res) {
+      }
+    });
+	
+	wx.onMenuShareAppMessage({
+      title: document.getElementById("wx_share_title").value,
+      desc: document.getElementById("wx_share_desc").value,
+      link: document.getElementById("wx_share_url").value,
+      imgUrl: document.getElementById("wx_share_pic").value,
+      trigger: function (res) {
+		//alert(document.getElementById("wx_share_desc").value);
+		//$("#wx_share_desc").val(ret.wx_share_msg);
+       // alert('用户点击发送给朋友');
+      },
+      success: function (res) {
+	  	
+	  	
+       // alert('已分享');
+      },
+      cancel: function (res) {
+       // alert('已取消');
+      },
+      fail: function (res) {
+       // alert(JSON.stringify(res));
+      }
+    });
+	
+	wx.onMenuShareTimeline({
+      title: document.getElementById("wx_share_desc").value,
+      link: document.getElementById("wx_share_url").value,
+      imgUrl: document.getElementById("wx_share_pic").value,
+	  
+      trigger: function (res) {
+       // alert('用户点击分享到朋友圈');
+      },
+      success: function (res) {
+       // alert('已分享');
+      },
+      cancel: function (res) {
+       // alert('已取消');
+      },
+      fail: function (res) {
+        //alert(JSON.stringify(res));
+      }
+    });
+	
+  });
+  
+  wx.error(function (res) {
+	
+	alert(res.errMsg);
+});
+
+</script>
+<style>
+div.item {
+	width:100%;
+	margin:3px auto 3px;
+	background:#CD9B1D;
+	height:65px;
+	line-height:65px;
+	text-align:center;
+}
+div.item span.txt,span.txt a,span.txt a:hover {
+	color:#DF2D5F;
+	font-weight:bolder;
+	font-size:15px;
+	font-family:Helvetica, Arial, sans-serif;
+	text-decoration:none;
+}
+*{padding:0; margin:0}
+.alayer2{background:#dedaa3; opacity:0.5; width:100%; height:100%; position:fixed; display:none; z-index:993;left:0;top:0;}
+.reg{background:rgba(221, 55, 94, 0.84); width:90%; height:135px; position:fixed; z-index:994; left:4%; top:15%; line-height:22px; font-size:15px;  color:#CB7B03;display:none;border-radius:9px;}
+.reg a{ float:right; margin-top:-5px;}
+/*.reg{ height:200px; }*/
+.reg input{ width:94%; height:30px; line-height:30px; font-size:14px; margin-top:10px;padding-left: 3%}
+.submit, .txtbtn{ width:100%; height:40px; line-height:40px; border-radius:5px; background:#BA0F1A; color:#FFF; margin-top:20px; text-align:center; font-size:16px; font-weight:bolder;letter-spacing:5px}
+#reg #submitBtn {background:url(/lywdbbcj_kh_alk/Public/Uploads/5b76711fcc8de.png) no-repeat;background-size:100% 100%;margin:0 auto;width:135px;height:26px;}
+#reg b ,.back{cursor: pointer;position: absolute;display: block;background: rgba(0, 0, 0, 0.6);border-radius: 100%;width: 26px;height: 26px;text-indent: 50px;transform: none;top: 0px;right: 0px;z-index: 991;}
+#reg b:after,.back:after{position: absolute;content: '';display: block;width: 18px;height: 2px;background: #fff;-webkit-transform: rotate(-45deg);top: 12px;left: 4px;}
+#reg b:before ,.back:before{position: absolute;content: '';display: block;width: 18px;height: 2px;background: #fff;-webkit-transform: rotate(45deg);top: 12px;left: 4px;}
+</style>
+</head>
+<body style="position: fixed;margin: 0;width: 100%;height: 100%;background: url(/lywdbbcj_kh_alk/Public/Uploads/5b9b682cb10ef.jpg) no-repeat;background-size: 100% 100%">
+<div class="tip-area2" style="width: 85%;height: 90%;margin: 5% auto;">
+<div class="list-title">我的奖品列表
+    <div class="arrow-tip" onclick="goindex()">返回</div></div>
+<div class="line"></div>	
+<!-- <div class="line"></div> -->
+<div style="width: 100%">
+  <table style="width: 100%;text-align: center;line-height: 30px;">   
+    <tbody style="position: absolute;height: 77%;width:85%;overflow: auto;text-align: center;">
+      <!-- <thead > -->
+      <tr>
+        <th style="width: 15%">序号</th>
+        <th style="width: 30%">奖项名称</th>
+        <th style="width: 30%">奖品名称</th>
+        <th style="width: 25%">兑奖状态</th>
+      </tr>
+    <!-- </thead> -->
+          </tbody>
+  </table>							
+</div>
+<!-- reg -->
+<div class="reg" id="reg" style="display: none;">
+    <b onclick="notice();" style=""></b>
+<div style="padding:10px;">
+    <input type="text" id="duijiangma" placeholder="请输入兑奖码" maxlength="11" style="margin-top:6%"/>
+    <!-- <input type="tel" id="userphone" placeholder="请输入您的手机号码" maxlength="11"/> -->
+    <!-- <span style="color:white;font-size:12px;margin-left:2%">*为了让工作人员给您兑奖，请正确填写资料</span> -->
+    <div class="btn" id="submitBtn" onclick="doChange()" style="margin-top:4%;"></div>
+</div>
+</div>
+<div class="alayer2" style="display: none;"></div>
+<!-- reg end -->
+<input type="hidden" id="wx_share_title" value="龙岩万达影城中秋博饼"/>
+<input type="hidden" id="wx_share_desc" value="龙岩万达影城金秋送礼！点击博取免费观影券等大奖！"/>
+<input type="hidden" id="wx_share_pic" value="http://jy.gz2hpfk.com/lywdbbcj_kh_alk/Public/Uploads/5b9b67f621cd8.jpg"/>
+<input type="hidden" id="wx_share_url" value="http://jy.gz2hpfk.com/lywdbbcj_kh_alk/index.php/Index/index.html"/>
+<input type="hidden" id="lottId" value=""/>
+</body>
+</html>

@@ -1,10 +1,16 @@
 
 define(function(){
 
-	return {
-		color: "black",
-		size: "unisize"
-	}
+        return {
+			inventory:[],
+			cart:[],
+            color: "blue",
+            size: "large",
+            addToCart: function() {
+                this.inventory.push(this);
+                this.cart.push(this);
+            }
+        }
 })
 
 /*

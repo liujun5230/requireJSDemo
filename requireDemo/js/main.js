@@ -10,7 +10,8 @@ requirejs.config({
 		jquery: 'jquery-1.7.2.min',
         app: '../app',
 		shirt: '../app/shirt',
-		wire: '../app/wire'
+		wire: '../app/wire',
+		person: '../app/person'
 	}
 });
 
@@ -20,12 +21,14 @@ require(["jquery","shirt"], function($,shirt) {
         //loaded and can be used here now.
 		var ts = shirt;
 		$("#mcover").html(ts.size);
+		console.log(333);
 });
 
 
 // Start the main app logic.
-require(["jquery","wire"], function($,w) {
+require(["person","wire"], function(p,w) {
         //jQuery, canvas and the app/sub module are all
         //loaded and can be used here now.
 		w();
+
 });
